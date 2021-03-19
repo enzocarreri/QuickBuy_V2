@@ -1,0 +1,54 @@
+<div class="text-center">
+  <form class="form-signin">
+    <h1 class="h4 mb-3 login">Login do Cliente</h1>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" id="inputEmail"
+           name="email" placeholder="Informe o seu email"
+           class="form-control mb-3"
+           #email="ngModel"
+           [ngClass]="{
+           'is-invalid':email.invalid && (email.dirty || email.touched),
+           'is-valid':email.valid && (email.dirty || email.touched)
+           }"
+           [(ngModel)]="usuario.email"
+           email
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors.required">
+        Email deve ser preenchido
+      </div>
+      <div *ngIf="email.errors.email">
+        Email nao está no formato incorreto
+      </div>
+    </div>
+
+    <label for="inputSenha" class="sr-only">Senha</label>
+    <input type="password" id="inputSenha"
+           name="senha" class="form-control mb-3"
+           #senha="ngModel"
+           [(ngModel)]="usuario.senha"
+           [ngClass]="{
+           'is-invalid':senha.invalid && (senha.dirty || senha.touched),
+           'is-valid':senha.valid && (senha.dirty || senha.touched)
+           }"
+           required />
+    <div class="invalid-feedback mb-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+      <div *ngIf="senha.errors.required">
+        Email deve ser preenchido
+      </div>
+    </div>
+
+
+    <button class="btn btn-primary btn-block" (click)="entrar()" type="submit" [disabled]="ativa_spiner">
+      <span class="spinner-border spinner-border-sm" role="status" *ngIf="ativa_spiner" aria-hidden="true"></span>
+      Entrar
+    </button>
+    <div class="alert alert-danger" *ngIf="mensagem">
+      {{mensagem}}
+    </div>    
+    <img src="../../../assets/BUY-NOW.png" [title]="titulo" />
+    <!--<div class="alert alert-danger" role="alert" *ngIf="usuarioAutenticado">
+    This is a danger alert—check it out!
+  </div>-->
+  </form>
+</div>

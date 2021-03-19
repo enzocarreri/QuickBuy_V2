@@ -2,7 +2,7 @@
 
 namespace QuickBuy.Dominio.Entidades
 {
-    public class Usuario
+    public class Usuario : Entidade
     {
         public int Id { get; set; }
 
@@ -12,6 +12,19 @@ namespace QuickBuy.Dominio.Entidades
         public string Sobrenome { get; set; }
 
         //um usuario pode ter nenhum ou muitos pedidos
-        public ICollection<Pedido> Pedidos { get; set; }
+        public virtual ICollection<Pedido> Pedido { get; set; }
+
+        public override void Validate()
+        {
+            LimparMensagemValidacao();
+            if (!string.IsNullOrEmpty(Email))
+            {
+                AdicionarCritica("Critica: preencha o email");
+            }
+            if (!string.IsNullOrEmpty(Senha))
+            {
+                AdicionarCritica("Critica: preencha a senha");
+            }
+        }
     }
 }

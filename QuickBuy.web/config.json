@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "MySqlCon": "server=localhost;uid=root;pwd=ogampl28!;database=QuickBuyDB"
+  }
+}
