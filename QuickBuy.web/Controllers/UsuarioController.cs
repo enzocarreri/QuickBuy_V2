@@ -18,10 +18,18 @@ namespace QuickBuy.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post()
+        public ActionResult Post([FromBody] Usuario usuario)
         {
             try
             {
+                var usuarioCad = _usuarioRepositorio.Obter(usuario.Email);
+                if (usuarioCad != null)
+                {
+                    return BadRequest("Usuario já cadastrado no sistema");                   
+                }
+
+                _usuarioRepositorio.Adicionar(usuario);
+
                 return Ok();
             }
             catch(Exception ex)
@@ -38,7 +46,7 @@ namespace QuickBuy.Web.Controllers
                 var usuarioRet = _usuarioRepositorio.Obter(u.Email,u.Senha);
                 if (usuarioRet != null)
                 {
-                    return Ok(u);
+                    return Ok(usuarioRet);
                 }
                 return BadRequest("Usuario ou senha invalidos"); 
             }

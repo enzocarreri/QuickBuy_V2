@@ -1,0 +1,10 @@
+.input-group > .custom-file:not(:last-child) .custom-file-label, .input-group > .custom-file:not(:last-child) .custom-file-label::after
+{
+    content:"Selecionar";
+}
+.titulo{
+    color: #666;
+}
+.invalid-feedback{
+    display:block;
+}
